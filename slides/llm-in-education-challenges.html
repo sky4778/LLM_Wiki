@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LLM 在教學上的運用問題與核心挑戰 | Research LLM Wiki</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Zen Kaku Gothic New', 'Plus Jakarta Sans', -apple-system, sans-serif;
+      background-color: #FAFAFB;
+      color: #334155;
+      overflow: hidden;
+      user-select: none;
+      -webkit-font-smoothing: antialiased;
+    }
+    .serif-title {
+      font-family: 'Noto Serif TC', serif;
+    }
+    .slide {
+      display: none;
+      opacity: 0;
+      transform: scale(0.985) translateY(8px);
+      transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .slide.active {
+      display: flex;
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+    /* 日式透明感：雪白底 + 櫻花粉微光 + 琉璃藍柔暈 */
+    .bg-japanese-glow {
+      background: 
+        radial-gradient(circle at 18% 18%, rgba(254, 226, 226, 0.45) 0%, rgba(250, 250, 251, 0) 55%),
+        radial-gradient(circle at 82% 82%, rgba(224, 242, 254, 0.45) 0%, rgba(250, 250, 251, 0) 55%),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.8) 0%, rgba(250, 250, 251, 1) 100%);
+    }
+    /* 磨砂半透明玻璃卡片 */
+    .card-frosted {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 
+        0 10px 28px -6px rgba(148, 163, 184, 0.12),
+        0 1px 3px rgba(148, 163, 184, 0.05);
+    }
+    .badge-sakura {
+      background: rgba(255, 241, 242, 0.85);
+      color: #E11D48;
+      border: 1px solid rgba(254, 205, 211, 0.8);
+    }
+    .badge-ruri {
+      background: rgba(240, 249, 255, 0.85);
+      color: #0284C7;
+      border: 1px solid rgba(186, 230, 254, 0.8);
+    }
+    .badge-subtle {
+      background: rgba(248, 250, 252, 0.85);
+      color: #64748B;
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+  </style>
+</head>
+<body class="h-screen w-screen flex flex-col justify-between p-6 md:p-10 bg-japanese-glow relative">
+
+  <!-- 頂部進度與導航條 -->
+  <header class="w-full flex items-center justify-between z-20 pb-4 border-b border-slate-200/60">
+    <div class="flex items-center space-x-3">
+      <div class="w-2.5 h-2.5 rounded-full bg-rose-400 shadow-sm shadow-rose-300"></div>
+      <span class="text-xs uppercase tracking-widest text-slate-400 font-medium">Research LLM Wiki • 專題簡報</span>
+    </div>
+    <div class="flex items-center space-x-5">
+      <span id="slideCounter" class="text-xs font-medium text-slate-500 tracking-widest">01 / 08</span>
+      <button id="fullscreenBtn" class="text-xs text-slate-500 hover:text-slate-800 px-3 py-1 rounded-full bg-white/70 border border-slate-200/80 shadow-xs hover:shadow transition">
+        全螢幕 (F)
+      </button>
+    </div>
+  </header>
+
+  <!-- 頂部輕透進度細線 -->
+  <div class="absolute top-0 left-0 h-[2px] bg-gradient-to-r from-rose-300 via-sky-300 to-indigo-300 transition-all duration-300 z-30" id="progressBar" style="width: 12.5%;"></div>
+
+  <!-- 主要投影片畫布 -->
+  <main class="w-full max-w-6xl mx-auto flex-1 flex items-center justify-center py-4 z-10">
+
+    <!-- Slide 1: 封面 -->
+    <section class="slide active flex-col md:flex-row items-center justify-between w-full gap-8">
+      <div class="flex-1 space-y-5 text-left">
+        <div class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium badge-sakura">
+          <span>🌸</span> <span class="ml-1.5 tracking-wider">教育與人工智慧專題綜述</span>
+        </div>
+        <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-slate-800 leading-tight serif-title">
+          LLM 在教學上的<br><span class="bg-gradient-to-r from-rose-500 to-sky-600 bg-clip-text text-transparent">運用問題與核心挑戰</span>
+        </h1>
+        <p class="text-sm md:text-base text-slate-500 font-light leading-relaxed max-w-lg">
+          從機器幻覺、思維惰性到二十步推理斷崖，探討生成式 AI 走入現代課堂時的技術盲點、教育異質性與人本治理之道。
+        </p>
+        <div class="pt-2 flex flex-wrap gap-2 text-xs text-slate-400">
+          <span class="px-2.5 py-1 rounded-md bg-white/80 border border-slate-200/60">Xu et al. (2024)</span>
+          <span class="px-2.5 py-1 rounded-md bg-white/80 border border-slate-200/60">OpenAI (2023)</span>
+          <span class="px-2.5 py-1 rounded-md bg-white/80 border border-slate-200/60">Toolformer (2023)</span>
+        </div>
+      </div>
+      <!-- 圖片容器 (支援本機檔案 + 日系預留卡片) -->
+      <div class="w-full md:w-[460px] h-[320px] relative rounded-3xl overflow-hidden card-frosted p-2.5 border border-white/80 bg-white flex items-center justify-center">
+        <img src="./assets/hero-education.svg" alt="Hero Education" class="w-full h-full object-contain rounded-2xl" onerror="this.src='./assets/hero-education.png';" />
+      </div>
+    </section>
+
+    <!-- Slide 2: 全景架構總覽 -->
+    <section class="slide flex-col w-full space-y-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-2">
+        <div>
+          <div class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium badge-ruri mb-2">
+            <span>全景視野</span>
+          </div>
+          <h2 class="text-2xl md:text-3xl font-bold text-slate-800 serif-title">教學應用問題的四大向度</h2>
+        </div>
+        <p class="text-xs text-slate-400 tracking-wider">四個相互交織的現實瓶頸</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 w-full">
+        <div class="card-frosted p-5 rounded-2xl space-y-3 border-t-2 border-t-rose-300">
+          <div class="text-xs font-bold text-rose-500 uppercase tracking-widest">Dimension 01</div>
+          <h3 class="text-base font-bold text-slate-800">技術性盲區</h3>
+          <p class="text-xs text-slate-500 font-light leading-relaxed">
+            機器幻覺（偽知識）、多步長程邏輯推理斷崖、缺乏符號確定性運算能力。
+          </p>
+        </div>
+        <div class="card-frosted p-5 rounded-2xl space-y-3 border-t-2 border-t-sky-300">
+          <div class="text-xs font-bold text-sky-500 uppercase tracking-widest">Dimension 02</div>
+          <h3 class="text-base font-bold text-slate-800">學習者認知衝擊</h3>
+          <p class="text-xs text-slate-500 font-light leading-relaxed">
+            認知外包（Cognitive Offloading）、跳過思考挫折期、自主探究意願削弱。
+          </p>
+        </div>
+        <div class="card-frosted p-5 rounded-2xl space-y-3 border-t-2 border-t-indigo-300">
+          <div class="text-xs font-bold text-indigo-500 uppercase tracking-widest">Dimension 03</div>
+          <h3 class="text-base font-bold text-slate-800">教育本質衝突</h3>
+          <p class="text-xs text-slate-500 font-light leading-relaxed">
+            情感共鳴、品格身教無法被符號統計編碼；人際同儕交流縮減。
+          </p>
+        </div>
+        <div class="card-frosted p-5 rounded-2xl space-y-3 border-t-2 border-t-slate-400">
+          <div class="text-xs font-bold text-slate-600 uppercase tracking-widest">Dimension 04</div>
+          <h3 class="text-base font-bold text-slate-800">倫理與公平邊界</h3>
+          <p class="text-xs text-slate-500 font-light leading-relaxed">
+            付費算力形成的二度階級鴻溝、未成年人學習隱私洩漏、傳統評量機制失靈。
+          </p>
+        </div>
+      </div>
+      <!-- 底部架構圖插槽 -->
+      <div class="w-full h-36 rounded-2xl card-frosted p-2 relative overflow-hidden border border-white bg-white flex items-center justify-center">
+        <img src="./assets/framework-overview.svg" alt="Framework Overview" class="w-full h-full object-contain rounded-xl" onerror="this.src='./assets/framework-overview.png';" />
+      </div>
+    </section>
+
+    <!-- Slide 3: 機器幻覺與偽知識 -->
+    <section class="slide flex-col md:flex-row w-full gap-8 items-center">
+      <div class="flex-1 space-y-4 text-left">
+        <div class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium badge-sakura">
+          <span>核心技術難題</span>
+        </div>
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-800 serif-title">1. 機器幻覺與偽知識擴散</h2>
+        <p class="text-xs md:text-sm text-slate-500 font-light leading-relaxed">
+          大模型具有「極具權威感、語法無懈可擊，內容卻憑空捏造」的特質。處於吸收階段的學童缺乏學科批判素養，極易先入為主地將錯誤資訊奉為真理。
+        </p>
+        <div class="space-y-2.5 pt-2">
+          <div class="card-frosted p-3.5 rounded-xl text-xs text-slate-600 border-l-2 border-l-rose-400">
+            <strong>語料偏差：</strong>非英文或在地文化知識匱乏，幻覺發生率更為加劇。
+          </div>
+          <div class="card-frosted p-3.5 rounded-xl text-xs text-slate-600 border-l-2 border-l-sky-400">
+            <strong>緩解解法：</strong>導入嚴格權威教材的 RAG 檢索增強生成，杜絕自由天馬行空的偽科學輸出。
+          </div>
+        </div>
+      </div>
+      <div class="w-full md:w-[420px] h-[340px] card-frosted p-2.5 rounded-3xl relative overflow-hidden bg-white flex items-center justify-center">
+        <img src="./assets/hallucination-risks.svg" alt="Hallucination Risks" class="w-full h-full object-contain rounded-2xl" onerror="this.src='./assets/hallucination-risks.png';" />
+      </div>
+    </section>
+
+    <!-- Slide 4: 二十步推理斷崖 -->
+    <section class="slide flex-col w-full space-y-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-2">
+        <div>
+          <div class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium badge-ruri mb-2">
+            <span>數理推論實證</span>
+          </div>
+          <h2 class="text-2xl md:text-3xl font-bold text-slate-800 serif-title">2. 多步嚴密推理的「二十步斷崖」</h2>
+        </div>
+        <p class="text-xs text-slate-400">引自文獻 Xu et al. (2024) 實證分析</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+        <!-- 數據對比卡片 -->
+        <div class="card-frosted p-6 rounded-3xl md:col-span-5 flex flex-col items-center justify-center space-y-4">
+          <div class="text-xs font-medium text-slate-400 tracking-wider">推理步驟長度 vs 準確率</div>
+          <div class="flex justify-center items-end space-x-10 py-2">
+            <div class="flex flex-col items-center space-y-2">
+              <span class="text-2xl font-bold text-sky-600">95%</span>
+              <div class="w-14 bg-sky-300/80 rounded-t-xl" style="height: 100px;"></div>
+              <span class="text-[11px] text-slate-500">短步推理 (&lt;5步)</span>
+            </div>
+            <div class="flex flex-col items-center space-y-2">
+              <span class="text-2xl font-bold text-rose-500">36%</span>
+              <div class="w-14 bg-rose-300/80 rounded-t-xl" style="height: 38px;"></div>
+              <span class="text-[11px] text-slate-500">長程推論 (&ge;20步)</span>
+            </div>
+          </div>
+          <div class="text-[11px] text-slate-400 text-center">單純依靠文字預測在數理嚴密推導中極易中途崩潰</div>
+        </div>
+        <!-- 圖片與解說卡片 -->
+        <div class="md:col-span-7 space-y-3">
+          <div class="h-44 card-frosted p-2 rounded-2xl relative overflow-hidden bg-white flex items-center justify-center">
+            <img src="./assets/reasoning-cliff-chart.svg" alt="Reasoning Cliff Chart" class="w-full h-full object-contain rounded-xl" onerror="this.src='./assets/reasoning-cliff-chart.png';" />
+          </div>
+          <div class="card-frosted p-3.5 rounded-xl text-xs text-slate-600 leading-relaxed border-l-2 border-l-amber-300">
+            <strong>骨牌式謬誤：</strong>神經網絡的自回歸生成一旦在第 3 步產生浮點數計算偏差，後續 17 步證明皆淪為偽證明。必須輔以<strong>過程監督 (PRM)</strong> 與<strong>工具調用 (Toolformer)</strong>。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 5: 認知外包與思維惰性 -->
+    <section class="slide flex-col md:flex-row w-full gap-8 items-center">
+      <div class="w-full md:w-[420px] h-[340px] card-frosted p-2.5 rounded-3xl relative overflow-hidden order-2 md:order-1 bg-white flex items-center justify-center">
+        <img src="./assets/cognitive-laziness.svg" alt="Cognitive Laziness" class="w-full h-full object-contain rounded-2xl" onerror="this.src='./assets/cognitive-laziness.png';" />
+      </div>
+      <div class="flex-1 space-y-4 text-left order-1 md:order-2">
+        <div class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium badge-subtle">
+          <span>學習心理危機</span>
+        </div>
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-800 serif-title">3. 認知外包與思維惰性</h2>
+        <p class="text-xs md:text-sm text-slate-500 font-light leading-relaxed">
+          統計顯示近 9 成學生曾利用 AI 協助完成作業。唾手可得的完整解答，跳過了「建構問題假設 $\to$ 遭遇挫折 $\to$ 自我推敲」的關鍵神經認知迴路。
+        </p>
+        <div class="grid grid-cols-1 gap-2.5 pt-1">
+          <div class="card-frosted p-3.5 rounded-xl text-xs text-slate-600">
+            <span class="text-rose-500 font-bold">● 假性理解：</span>學生誤將「讀懂 AI 解題步驟」等同於「自己已具備獨立解題能力」。
+          </div>
+          <div class="card-frosted p-3.5 rounded-xl text-xs text-slate-600">
+            <span class="text-sky-500 font-bold">● 防禦設計：</span>實施「蘇格拉底式 Prompt 原則」，強制 AI 扮演引導者，只提問、不給答案。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 6: 教育本質的不可符號化 -->
+    <section class="slide flex-col w-full space-y-5">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-2">
+        <div>
+          <div class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium badge-sakura mb-2">
+            <span>教育哲學思辨</span>
+          </div>
+          <h2 class="text-2xl md:text-3xl font-bold text-slate-800 serif-title">4. 教育本質的不可符號化</h2>
+        </div>
+        <p class="text-xs text-slate-400">機器演算與人類養育的不可通約性</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 w-full">
+        <div class="card-frosted p-5 rounded-2xl space-y-2 border-t-2 border-t-slate-400">
+          <span class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">人類教育歷程</span>
+          <h3 class="text-base font-bold text-slate-800">價值觀塑造 $\to$ 系統知識 $\to$ 生活實踐</h3>
+          <p class="text-xs text-slate-500 font-light leading-relaxed">
+            教育是一棵樹搖動另一棵樹，雲推動另一朵雲。眼神交流、挫敗撫慰、言傳身教屬於難以被向量矩陣形式化的隱性知識（Tacit Knowledge）。
+          </p>
+        </div>
+        <div class="card-frosted p-5 rounded-2xl space-y-2 border-t-2 border-t-sky-400">
+          <span class="text-[11px] font-bold text-sky-500 uppercase tracking-widest">機器學習機制</span>
+          <h3 class="text-base font-bold text-slate-800">巨量文本語料 $\to$ 統計關聯 $\to$ 人類回饋偏好</h3>
+          <p class="text-xs text-slate-500 font-light leading-relaxed">
+            機器擅長無窮無盡的即時資料檢索與語義組合，卻毫無真實生命的痛感與同理心，無法獨立承擔育人職責。
+          </p>
+        </div>
+      </div>
+      <!-- 圖片槽 -->
+      <div class="w-full h-40 rounded-2xl card-frosted p-2 relative overflow-hidden bg-white flex items-center justify-center">
+        <img src="./assets/teacher-student-nature.svg" alt="Teacher Student Interaction" class="w-full h-full object-contain rounded-xl" onerror="this.src='./assets/teacher-student-nature.png';" />
+      </div>
+    </section>
+
+    <!-- Slide 7: 數位鴻溝與隱私誠信 -->
+    <section class="slide flex-col md:flex-row w-full gap-8 items-center">
+      <div class="flex-1 space-y-4 text-left">
+        <div class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium badge-ruri">
+          <span>倫理與制度</span>
+        </div>
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-800 serif-title">5. 數位鴻溝、隱私與誠信危機</h2>
+        <p class="text-xs md:text-sm text-slate-500 font-light leading-relaxed">
+          技術的普及並未自動帶來公平。高昂的月費訂閱與運算設備門檻正在拉大貧富學子間的 AI 輔導落差。
+        </p>
+        <div class="space-y-2 pt-1 text-xs text-slate-600">
+          <div class="card-frosted p-3 rounded-xl">
+            <strong>未成年人數據外洩：</strong>學習行為、心理困惑與錯題畫像被商業伺服器收集的安全紅線。
+          </div>
+          <div class="card-frosted p-3 rounded-xl">
+            <strong>評量信用危機：</strong>傳統回家作業與心得報告真偽莫辨，倒逼教學評量由「成果驗收」轉向「課堂過程檢驗」。
+          </div>
+        </div>
+      </div>
+      <div class="w-full md:w-[420px] h-[340px] card-frosted p-2.5 rounded-3xl relative overflow-hidden bg-white flex items-center justify-center">
+        <img src="./assets/equity-privacy-divide.svg" alt="Equity & Privacy" class="w-full h-full object-contain rounded-2xl" onerror="this.src='./assets/equity-privacy-divide.png';" />
+      </div>
+    </section>
+
+    <!-- Slide 8: 破解三角與未來架構 -->
+    <section class="slide flex-col w-full space-y-5">
+      <div class="text-center space-y-1">
+        <div class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium badge-sakura mb-1">
+          <span>破解之路</span>
+        </div>
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-800 serif-title">構建可靠且以人為本的教育 AI</h2>
+        <p class="text-xs text-slate-400">技術解耦 + 蘇格拉底引導 + 教師賦能</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+        <div class="card-frosted p-5 rounded-2xl space-y-2 border-t-2 border-t-rose-300">
+          <div class="text-xs font-bold text-rose-500 uppercase tracking-widest">技術解耦</div>
+          <h3 class="text-sm font-bold text-slate-800">CoT + PRM + Tool</h3>
+          <p class="text-xs text-slate-500 font-light leading-relaxed">
+            以思維鏈展開思考、過程監督精準核驗、外部計算器杜絕算術幻覺，打造高可靠數理輔導。
+          </p>
+        </div>
+        <div class="card-frosted p-5 rounded-2xl space-y-2 border-t-2 border-t-sky-300">
+          <div class="text-xs font-bold text-sky-500 uppercase tracking-widest">教學重構</div>
+          <h3 class="text-sm font-bold text-slate-800">蘇格拉底式啟發</h3>
+          <p class="text-xs text-slate-500 font-light leading-relaxed">
+            透過防爆雷 Prompting 堅持「只引導、不直接貼解答」，保護學生獨立思辨的認知陣地。
+          </p>
+        </div>
+        <div class="card-frosted p-5 rounded-2xl space-y-2 border-t-2 border-t-indigo-300">
+          <div class="text-xs font-bold text-indigo-500 uppercase tracking-widest">以人為本</div>
+          <h3 class="text-sm font-bold text-slate-800">教師角色升級</h3>
+          <p class="text-xs text-slate-500 font-light leading-relaxed">
+            AI 承擔重覆批改與全天候常規答疑，教師轉型為心靈導師，專注於激發熱情與品格指引。
+          </p>
+        </div>
+      </div>
+      <!-- 底部終極架構圖槽 -->
+      <div class="w-full h-40 rounded-2xl card-frosted p-2 relative overflow-hidden bg-white flex items-center justify-center">
+        <img src="./assets/future-triad-architecture.svg" alt="Future Triad Architecture" class="w-full h-full object-contain rounded-xl" onerror="this.src='./assets/future-triad-architecture.png';" />
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 底部導航與控制鍵 -->
+  <footer class="w-full flex items-center justify-between z-20 pt-4 border-t border-slate-200/60">
+    <div class="text-xs text-slate-400 hidden sm:block">
+      鍵盤操作：<kbd class="px-2 py-0.5 bg-white border border-slate-200 rounded text-slate-600 shadow-xs">←</kbd> <kbd class="px-2 py-0.5 bg-white border border-slate-200 rounded text-slate-600 shadow-xs">→</kbd> 或 <kbd class="px-2 py-0.5 bg-white border border-slate-200 rounded text-slate-600 shadow-xs">Space</kbd> 切換頁面
+    </div>
+    <div class="flex items-center space-x-3 w-full sm:w-auto justify-between sm:justify-end">
+      <button id="prevBtn" class="px-4 py-2 rounded-full bg-white hover:bg-slate-50 border border-slate-200/80 text-xs font-medium text-slate-600 shadow-xs transition flex items-center space-x-1 disabled:opacity-30 disabled:pointer-events-none">
+        <span>← 上一頁</span>
+      </button>
+      <button id="nextBtn" class="px-5 py-2 rounded-full bg-slate-800 hover:bg-slate-700 text-xs font-medium text-white shadow-sm transition flex items-center space-x-1">
+        <span>下一頁 →</span>
+      </button>
+    </div>
+  </footer>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const slideCounter = document.getElementById('slideCounter');
+    const progressBar = document.getElementById('progressBar');
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+
+    function updateSlide(newIndex) {
+      if (newIndex < 0 || newIndex >= totalSlides) return;
+      
+      slides[currentSlide].classList.remove('active');
+      currentSlide = newIndex;
+      slides[currentSlide].classList.add('active');
+
+      // Update counter and progress bar
+      slideCounter.textContent = `${String(currentSlide + 1).padStart(2, '0')} / ${String(totalSlides).padStart(2, '0')}`;
+      progressBar.style.width = `${((currentSlide + 1) / totalSlides) * 100}%`;
+
+      // Update button states
+      prevBtn.disabled = currentSlide === 0;
+      nextBtn.textContent = currentSlide === totalSlides - 1 ? '重新開始 ↺' : '下一頁 →';
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (currentSlide > 0) updateSlide(currentSlide - 1);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentSlide < totalSlides - 1) {
+        updateSlide(currentSlide + 1);
+      } else {
+        updateSlide(0);
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
+        if (currentSlide < totalSlides - 1) updateSlide(currentSlide + 1);
+        else updateSlide(0);
+      } else if (e.key === 'ArrowLeft' || e.key === 'Backspace') {
+        if (currentSlide > 0) updateSlide(currentSlide - 1);
+      } else if (e.key === 'Home') {
+        updateSlide(0);
+      } else if (e.key === 'End') {
+        updateSlide(totalSlides - 1);
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullscreen();
+      }
+    });
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+      }
+    }
+
+    fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+    // Initial setup
+    updateSlide(0);
+  </script>
+</body>
+</html>

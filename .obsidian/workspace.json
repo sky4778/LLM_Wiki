@@ -1,0 +1,216 @@
+{
+  "main": {
+    "id": "c6e41c4da8b0eb16",
+    "type": "split",
+    "children": [
+      {
+        "id": "be3a3eb8ed277684",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f4d4905b4fa40deb",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "syntheses/reasoning-enhancement-pathway.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "reasoning-enhancement-pathway"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "37644c12b829d977",
+    "type": "split",
+    "children": [
+      {
+        "id": "09ac48084d8c0e11",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9d3e2a257abe8409",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "檔案瀏覽器"
+            }
+          },
+          {
+            "id": "243e0aa34dab93f2",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜尋"
+            }
+          },
+          {
+            "id": "8d50f6d1c626b17f",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "書籤"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "26f1d4729e20af0d",
+    "type": "split",
+    "children": [
+      {
+        "id": "d4eaa5341b7bd4d6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c9c99bedec9f7fa5",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "syntheses/reasoning-enhancement-pathway.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "反向連結"
+            }
+          },
+          {
+            "id": "f888c90d2c071d9f",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "syntheses/reasoning-enhancement-pathway.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "對外連結"
+            }
+          },
+          {
+            "id": "8af57e3e332219bd",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "標籤"
+            }
+          },
+          {
+            "id": "73cd880fa456a602",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "所有屬性"
+            }
+          },
+          {
+            "id": "dd568326af0b93b0",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "syntheses/reasoning-enhancement-pathway.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "大綱"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:開啟快速切換": false,
+      "graph:查看關聯圖": false,
+      "canvas:建立新畫布": false,
+      "daily-notes:開啟今天的每日筆記": false,
+      "templates:插入模板": false,
+      "command-palette:開啟命令面板": false,
+      "bases:建立新的 base": false
+    }
+  },
+  "active": "f4d4905b4fa40deb",
+  "lastOpenFiles": [
+    "syntheses/reasoning-enhancement-pathway.md",
+    "syntheses/llm-educational-applications-matrix.md",
+    "slides/assets/teacher-student-nature.png",
+    "slides/assets/reasoning-cliff-chart.png",
+    "slides/assets/README.md",
+    "slides/assets/hero-education.png",
+    "slides/assets/hallucination-risks.png",
+    "slides/assets/future-triad-architecture.png",
+    "slides/assets/framework-overview.png",
+    "slides/assets/equity-privacy-divide.png",
+    "slides/assets/cognitive-laziness.png",
+    "papers/2024-xu-llm-for-education-survey.md",
+    "papers/2023-schick-toolformer.md",
+    "papers/2023-lightman-lets-verify-step-by-step.md",
+    "papers/2022-wei-chain-of-thought.md",
+    "methods/prompt-engineering.md",
+    "methods/process-supervision.md",
+    "methods/intelligent-tutoring-system.md",
+    "methods/chain-of-thought.md",
+    "concepts/ai-hallucination-in-education.md",
+    "concepts/llmedu.md",
+    "index.md"
+  ]
+}

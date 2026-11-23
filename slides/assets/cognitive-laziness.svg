@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <filter id="cShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#0F172A" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+  <rect width="800" height="600" rx="24" fill="#FAF9F6" stroke="#E2E8F0" stroke-width="2"/>
+
+  <!-- Header -->
+  <text x="50" y="55" font-family="'Noto Serif TC', serif" font-size="22" font-weight="700" fill="#1E293B">認知路徑對比：主動探究 vs 思維外包</text>
+  <text x="50" y="85" font-family="'Zen Kaku Gothic New', sans-serif" font-size="13" fill="#64748B">便利性如何引發「假性理解」並削弱獨立思辨力</text>
+
+  <!-- Top: Active Cognitive Loop (Green / Blue) -->
+  <g transform="translate(50, 110)">
+    <rect width="700" height="200" rx="18" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="2" filter="url(#cShadow)"/>
+    <text x="30" y="38" font-family="'Zen Kaku Gothic New', sans-serif" font-size="15" font-weight="700" fill="#166534">🌟 健全認知循環：主動探究 (Deep Learning)</text>
+
+    <!-- 4 Steps -->
+    <g transform="translate(30, 60)">
+      <!-- Step 1 -->
+      <rect x="0" y="0" width="135" height="100" rx="12" fill="#FFFFFF" stroke="#86EFAC" stroke-width="1.5"/>
+      <text x="67" y="35" font-family="'Zen Kaku Gothic New', sans-serif" font-size="13" font-weight="700" fill="#15803D" text-anchor="middle">1. 遭遇難題</text>
+      <text x="67" y="65" font-family="'Zen Kaku Gothic New', sans-serif" font-size="11" fill="#4B5563" text-anchor="middle">建立問題假設</text>
+
+      <text x="150" y="55" font-size="18" fill="#86EFAC">➔</text>
+
+      <!-- Step 2 -->
+      <rect x="170" y="0" width="135" height="100" rx="12" fill="#FFFFFF" stroke="#86EFAC" stroke-width="1.5"/>
+      <text x="237" y="35" font-family="'Zen Kaku Gothic New', sans-serif" font-size="13" font-weight="700" fill="#15803D" text-anchor="middle">2. 思維挫折期</text>
+      <text x="237" y="65" font-family="'Zen Kaku Gothic New', sans-serif" font-size="11" fill="#4B5563" text-anchor="middle">神經突觸重新塑形</text>
+
+      <text x="320" y="55" font-size="18" fill="#86EFAC">➔</text>
+
+      <!-- Step 3 -->
+      <rect x="340" y="0" width="135" height="100" rx="12" fill="#FFFFFF" stroke="#86EFAC" stroke-width="1.5"/>
+      <text x="407" y="35" font-family="'Zen Kaku Gothic New', sans-serif" font-size="13" font-weight="700" fill="#15803D" text-anchor="middle">3. 推敲頓悟</text>
+      <text x="407" y="65" font-family="'Zen Kaku Gothic New', sans-serif" font-size="11" fill="#4B5563" text-anchor="middle">突破邏輯卡點</text>
+
+      <text x="490" y="55" font-size="18" fill="#86EFAC">➔</text>
+
+      <!-- Step 4 -->
+      <rect x="510" y="0" width="130" height="100" rx="12" fill="#DCFCE7" stroke="#4ADE80" stroke-width="2"/>
+      <text x="575" y="35" font-family="'Zen Kaku Gothic New', sans-serif" font-size="13" font-weight="700" fill="#15803D" text-anchor="middle">4. 能力固化</text>
+      <text x="575" y="65" font-family="'Zen Kaku Gothic New', sans-serif" font-size="11" fill="#166534" text-anchor="middle">具備獨立遷移力</text>
+    </g>
+  </g>
+
+  <!-- Bottom: Passive AI Offloading (Amber / Rose) -->
+  <g transform="translate(50, 340)">
+    <rect width="700" height="210" rx="18" fill="#FFFBEB" stroke="#FDE68A" stroke-width="2" filter="url(#cShadow)"/>
+    <text x="30" y="38" font-family="'Zen Kaku Gothic New', sans-serif" font-size="15" font-weight="700" fill="#B45309">⚠️ 認知外包陷阱：答案餵食 (Cognitive Offloading)</text>
+
+    <!-- 4 Steps -->
+    <g transform="translate(30, 60)">
+      <!-- Step 1 -->
+      <rect x="0" y="0" width="135" height="100" rx="12" fill="#FFFFFF" stroke="#FCD34D" stroke-width="1.5"/>
+      <text x="67" y="35" font-family="'Zen Kaku Gothic New', sans-serif" font-size="13" font-weight="700" fill="#B45309" text-anchor="middle">1. 複製題目</text>
+      <text x="67" y="65" font-family="'Zen Kaku Gothic New', sans-serif" font-size="11" fill="#78716C" text-anchor="middle">直接向 AI 索取</text>
+
+      <text x="150" y="55" font-size="18" fill="#FCD34D">➔</text>
+
+      <!-- Step 2 -->
+      <rect x="170" y="0" width="135" height="100" rx="12" fill="#FFFFFF" stroke="#F87171" stroke-width="1.5"/>
+      <text x="237" y="35" font-family="'Zen Kaku Gothic New', sans-serif" font-size="13" font-weight="700" fill="#DC2626" text-anchor="middle">2. 跳過挫折</text>
+      <text x="237" y="65" font-family="'Zen Kaku Gothic New', sans-serif" font-size="11" fill="#991B1B" text-anchor="middle">零思維阻抗</text>
+
+      <text x="320" y="55" font-size="18" fill="#F87171">➔</text>
+
+      <!-- Step 3 -->
+      <rect x="340" y="0" width="135" height="100" rx="12" fill="#FFFFFF" stroke="#F87171" stroke-width="1.5"/>
+      <text x="407" y="35" font-family="'Zen Kaku Gothic New', sans-serif" font-size="13" font-weight="700" fill="#DC2626" text-anchor="middle">3. 假性理解</text>
+      <text x="407" y="65" font-family="'Zen Kaku Gothic New', sans-serif" font-size="11" fill="#991B1B" text-anchor="middle">看懂不等於學會</text>
+
+      <text x="490" y="55" font-size="18" fill="#F87171">➔</text>
+
+      <!-- Step 4 -->
+      <rect x="510" y="0" width="130" height="100" rx="12" fill="#FEE2E2" stroke="#EF4444" stroke-width="2"/>
+      <text x="575" y="35" font-family="'Zen Kaku Gothic New', sans-serif" font-size="13" font-weight="700" fill="#B91C1C" text-anchor="middle">4. 能力退化</text>
+      <text x="575" y="65" font-family="'Zen Kaku Gothic New', sans-serif" font-size="11" fill="#991B1B" text-anchor="middle">脫離 AI 便無解題力</text>
+    </g>
+  </g>
+</svg>

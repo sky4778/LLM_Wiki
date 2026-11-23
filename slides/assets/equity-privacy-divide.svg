@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <filter id="eShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#0F172A" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+  <rect width="800" height="600" rx="24" fill="#FAF9F6" stroke="#E2E8F0" stroke-width="2"/>
+
+  <!-- Title -->
+  <text x="50" y="55" font-family="'Noto Serif TC', serif" font-size="22" font-weight="700" fill="#1E293B">體制治理的三道紅線：平權、隱私與評量</text>
+  <text x="50" y="85" font-family="'Zen Kaku Gothic New', sans-serif" font-size="13" fill="#64748B">技術落地必須面對的社會制度邊界</text>
+
+  <!-- 3 Big Cards -->
+  <g transform="translate(50, 110)">
+    <!-- Card 1: Digital Divide -->
+    <rect x="0" y="0" width="700" height="120" rx="16" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1.5" filter="url(#eShadow)"/>
+    <rect x="25" y="25" width="40" height="40" rx="10" fill="#16A34A"/>
+    <text x="45" y="51" font-size="20" fill="#FFFFFF" text-anchor="middle">⚖️</text>
+    <text x="85" y="45" font-family="'Zen Kaku Gothic New', sans-serif" font-size="16" font-weight="700" fill="#15803D">1. 二度數位階層分化 (The Digital Divide)</text>
+    <text x="85" y="72" font-family="'Zen Kaku Gothic New', sans-serif" font-size="12" fill="#4B5563">高階大模型需月費訂閱（如 GPT-4, Claude Pro），富裕家庭享有頂級私人助教，弱勢學童甚至缺乏硬體設備，加劇教育不平等。</text>
+
+    <!-- Card 2: Minor Data Privacy -->
+    <rect x="0" y="145" width="700" height="120" rx="16" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.5" filter="url(#eShadow)"/>
+    <rect x="25" y="170" width="40" height="40" rx="10" fill="#2563EB"/>
+    <text x="45" y="196" font-size="20" fill="#FFFFFF" text-anchor="middle">🔒</text>
+    <text x="85" y="190" font-family="'Zen Kaku Gothic New', sans-serif" font-size="16" font-weight="700" fill="#1D4ED8">2. 未成年人數據隱私安全 (Minor Privacy)</text>
+    <text x="85" y="217" font-family="'Zen Kaku Gothic New', sans-serif" font-size="12" fill="#4B5563">教育平台深度記錄學生的日常作答、心理對話與錯題軌跡，若未在端側嚴格去識別化，商業雲端伺服器面臨巨大個資外洩風險。</text>
+
+    <!-- Card 3: Assessment Redesign -->
+    <rect x="0" y="290" width="700" height="120" rx="16" fill="#FFF1F2" stroke="#FECDD3" stroke-width="1.5" filter="url(#eShadow)"/>
+    <rect x="25" y="315" width="40" height="40" rx="10" fill="#E11D48"/>
+    <text x="45" y="341" font-size="20" fill="#FFFFFF" text-anchor="middle">📝</text>
+    <text x="85" y="335" font-family="'Zen Kaku Gothic New', sans-serif" font-size="16" font-weight="700" fill="#BE123C">3. 傳統評量信用失靈 (Assessment Crisis)</text>
+    <text x="85" y="362" font-family="'Zen Kaku Gothic New', sans-serif" font-size="12" fill="#4B5563">課後作業與論文報告真偽莫辨，倒逼整體教育制度由「死記硬背式成果驗收」轉向「課堂即席探究、口試口辯與推導鏈重構」。</text>
+  </g>
+</svg>

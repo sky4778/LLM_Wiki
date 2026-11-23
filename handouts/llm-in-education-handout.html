@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>大語言模型在教育中的運用問題與突破路徑 | 深度圖文講義</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Zen Kaku Gothic New', 'Plus Jakarta Sans', -apple-system, sans-serif;
+      background-color: #FAF9F6;
+      color: #334155;
+      -webkit-font-smoothing: antialiased;
+    }
+    .serif-title {
+      font-family: 'Noto Serif TC', serif;
+    }
+    /* 日式微透漸層氛圍 */
+    .bg-japanese-paper {
+      background: 
+        radial-gradient(circle at 10% 10%, rgba(254, 226, 226, 0.35) 0%, rgba(250, 249, 246, 0) 50%),
+        radial-gradient(circle at 90% 40%, rgba(224, 242, 254, 0.35) 0%, rgba(250, 249, 246, 0) 50%),
+        radial-gradient(circle at 30% 90%, rgba(254, 243, 199, 0.25) 0%, rgba(250, 249, 246, 0) 50%),
+        #FAF9F6;
+    }
+    .card-frosted {
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 0 8px 24px -6px rgba(148, 163, 184, 0.08), 0 1px 3px rgba(148, 163, 184, 0.03);
+    }
+    /* 雜誌排版裝飾細線 */
+    .editorial-border {
+      border-color: rgba(226, 232, 240, 0.8);
+    }
+    /* 列印樣式優化 */
+    @media print {
+      body {
+        background: #FFFFFF !important;
+        color: #000000 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+      .card-frosted {
+        background: #FFFFFF !important;
+        box-shadow: none !important;
+        border: 1px solid #E2E8F0 !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-japanese-paper min-h-screen text-slate-700 antialiased selection:bg-rose-100 selection:text-rose-900">
+
+  <!-- 頂部浮動導航與工具條 (列印時隱藏) -->
+  <header class="no-print sticky top-0 z-50 bg-white/75 backdrop-blur-md border-b editorial-border">
+    <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-2.5 h-2.5 rounded-full bg-rose-400"></div>
+        <span class="text-xs uppercase tracking-widest font-bold text-slate-500">Research LLM Wiki • 圖文講義</span>
+      </div>
+      <div class="flex items-center space-x-4">
+        <a href="#toc" class="text-xs text-slate-500 hover:text-slate-900 transition">目錄索引</a>
+        <button onclick="window.print()" class="text-xs px-3.5 py-1.5 rounded-full bg-slate-800 text-white hover:bg-slate-700 transition shadow-xs flex items-center space-x-1.5">
+          <span>🖨️ 列印 / 另存 PDF</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主文容器 -->
+  <div class="max-w-6xl mx-auto px-6 py-12 lg:py-16 grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+    <!-- 左側側邊欄：目錄導航 (Desktop Sticky) -->
+    <aside class="no-print lg:col-span-3 lg:sticky lg:top-24 h-fit space-y-6">
+      <div class="card-frosted p-5 rounded-2xl space-y-4 text-xs">
+        <div class="font-bold text-slate-800 tracking-wider uppercase flex items-center space-x-2">
+          <span class="text-rose-400">❖</span> <span>講義章節導覽</span>
+        </div>
+        <nav class="space-y-2 text-slate-500 font-light" id="toc">
+          <a href="#intro" class="block hover:text-rose-600 transition pl-2 border-l-2 border-transparent hover:border-rose-400">前言：教育典範的生成轉向</a>
+          <a href="#dimension-1" class="block hover:text-rose-600 transition pl-2 border-l-2 border-transparent hover:border-rose-400">01. 技術性能與邏輯盲區</a>
+          <a href="#cliff" class="block hover:text-rose-600 transition pl-4 text-slate-400 hover:text-rose-600">↳ 二十步推理斷崖實證</a>
+          <a href="#dimension-2" class="block hover:text-rose-600 transition pl-2 border-l-2 border-transparent hover:border-rose-400">02. 學習者認知與心理惰性</a>
+          <a href="#dimension-3" class="block hover:text-rose-600 transition pl-2 border-l-2 border-transparent hover:border-rose-400">03. 教育本質的不可符號化</a>
+          <a href="#dimension-4" class="block hover:text-rose-600 transition pl-2 border-l-2 border-transparent hover:border-rose-400">04. 數位鴻溝與誠信危機</a>
+          <a href="#triad" class="block hover:text-rose-600 transition pl-2 border-l-2 border-transparent hover:border-rose-400">05. 終極解方：技術三角架構</a>
+          <a href="#references" class="block hover:text-rose-600 transition pl-2 border-l-2 border-transparent hover:border-rose-400">附錄：核心引用文獻</a>
+        </nav>
+      </div>
+
+      <!-- 知識庫文獻標籤卡 -->
+      <div class="card-frosted p-4 rounded-2xl text-[11px] text-slate-500 space-y-2">
+        <div class="font-semibold text-slate-700">文獻沉澱節點</div>
+        <p class="leading-relaxed">本講義論述自動錨定於 Research LLM Wiki 知識庫中之四篇核心文獻與綜合矩陣。</p>
+        <div class="flex flex-wrap gap-1.5 pt-1">
+          <span class="px-2 py-0.5 rounded bg-rose-50 text-rose-600 border border-rose-100">Xu (2024)</span>
+          <span class="px-2 py-0.5 rounded bg-sky-50 text-sky-600 border border-sky-100">Wei (2022)</span>
+          <span class="px-2 py-0.5 rounded bg-indigo-50 text-indigo-600 border border-indigo-100">OpenAI (2023)</span>
+          <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600">Meta (2023)</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- 右側核心講義文章 (Editorial Content) -->
+    <main class="lg:col-span-9 space-y-16">
+
+      <!-- 講義封面與 Header -->
+      <section class="space-y-6 border-b editorial-border pb-10">
+        <div class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-rose-50 text-rose-600 border border-rose-200/80">
+          <span>🌸</span> <span class="ml-1.5 tracking-widest font-semibold">LLMEdu 專題研究講義 • 2026</span>
+        </div>
+        
+        <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-slate-800 leading-tight serif-title">
+          大語言模型在教育中的<br>運用問題與突破路徑
+        </h1>
+        
+        <p class="text-base md:text-lg text-slate-500 font-light leading-relaxed">
+          從認知科學、神經網絡自回歸限制到教育哲學，全面剖析生成式 AI 走入現代教學現場時的深層矛盾，並梳理未來「可靠人本導師系統」之構建框架。
+        </p>
+
+        <!-- 主視覺圖 (Hero Image) -->
+        <figure class="my-6 rounded-3xl overflow-hidden card-frosted p-2.5 border border-white">
+          <img src="../slides/assets/hero-education.svg" alt="教育與人工智慧主視覺" class="w-full h-auto rounded-2xl object-contain max-h-[460px]" onerror="this.src='../slides/assets/hero-education.png';" />
+          <figcaption class="text-center text-xs text-slate-400 py-3 tracking-wider font-light">
+            圖 1：人機協同未來教室之同心認知交互意象 (Research LLM Wiki 繪製)
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- 前言導讀 -->
+      <section id="intro" class="space-y-4 text-sm md:text-base leading-relaxed text-slate-600 font-light">
+        <h2 class="text-xl md:text-2xl font-bold text-slate-800 serif-title flex items-center space-x-2">
+          <span class="w-1.5 h-6 bg-rose-400 rounded-full inline-block"></span>
+          <span>前言：教育典範的生成轉向與隱憂</span>
+        </h2>
+        <p>
+          傳統教育體系受制於師資與時空成本，長年面臨「一體適用（One-size-fits-all）」的規格化限制。隨以 Transformer 為核心的大語言模型（LLMs）崛起，教育正迎來從<strong>「檢索模式（Search Mode）」</strong>邁向<strong>「生成模式（Generation Mode）」</strong>的根本典範轉移。
+        </p>
+        <p>
+          依據文獻 <em>Xu et al. (2024)</em> 的全景綜述，LLM 展現了跨學科知識整併與極致高頻的即時回饋（Immediate Feedback）潛力。然而，教育並非一般的資訊問答，其容錯率極低且直接關乎受教者的認知發展。當前大模型在實際課堂應用中，正面臨四個層次的嚴峻挑戰。
+        </p>
+        
+        <!-- 四大向度架構圖 (Framework Overview Image) -->
+        <figure class="my-6 rounded-2xl overflow-hidden card-frosted p-2 border border-white">
+          <img src="../slides/assets/framework-overview.svg" alt="教學應用四大維度架構圖" class="w-full h-auto rounded-xl object-contain max-h-[420px]" onerror="this.src='../slides/assets/framework-overview.png';" />
+          <figcaption class="text-center text-xs text-slate-400 py-2 tracking-wider font-light">
+            圖 2：LLM 教學運用問題四大向度全景軌道圖
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- 模組一：技術性能與邏輯盲區 -->
+      <section id="dimension-1" class="space-y-6 pt-6 border-t editorial-border">
+        <div class="space-y-2">
+          <span class="text-xs font-bold text-rose-500 uppercase tracking-widest">向度 01 • Technological Limitations</span>
+          <h2 class="text-xl md:text-2xl font-bold text-slate-800 serif-title">技術性能與邏輯極限</h2>
+        </div>
+
+        <div class="space-y-4 text-sm md:text-base leading-relaxed text-slate-600 font-light">
+          <h3 class="text-lg font-bold text-slate-800">1.1 機器幻覺（Hallucination）在教育中的致命性</h3>
+          <p>
+            大語言模型本質上是基於統計關聯與注意力權重的條件機率預測器，它並不「理解」真實物理世界或形式邏輯定理。這導致模型時常出現<strong>「極其權威、語法毫無破綻，但核心內容純屬虛構」</strong>的現象。
+          </p>
+          <div class="card-frosted p-5 rounded-2xl space-y-2 border-l-4 border-l-rose-400">
+            <div class="font-bold text-xs text-rose-600 uppercase tracking-wider">講義重點摘記</div>
+            <p class="text-xs leading-relaxed text-slate-600">
+              處於認知奠基期的中小學生，通常缺乏足夠的領域背景知識來進行交叉查證。一旦學生在早期概念建構時吸納了由 AI 製造的偽事實（如捏造的歷史因果、錯誤的生化反應機制），該錯誤將固化於心智模型中，後續修正需付出倍數的教學成本。
+            </p>
+          </div>
+
+          <!-- 幻覺對比圖 (Hallucination Risks Image) -->
+          <figure class="my-6 rounded-2xl overflow-hidden card-frosted p-2 border border-white">
+            <img src="../slides/assets/hallucination-risks.svg" alt="事實錨定與幻覺散佚對比" class="w-full h-auto rounded-xl object-contain max-h-[440px]" onerror="this.src='../slides/assets/hallucination-risks.png';" />
+            <figcaption class="text-center text-xs text-slate-400 py-2 tracking-wider font-light">
+              圖 3：左側結構化校本知識（RAG）與右側無約束機率生成之幻覺漂移對比
+            </figcaption>
+          </figure>
+
+          <h3 id="cliff" class="text-lg font-bold text-slate-800 pt-4">1.2 多步嚴密推理的「二十步斷崖 (The 20-Step Cliff)」</h3>
+          <p>
+            在數理、幾何與邏輯證明等高度序列化的學科中，推導往往具備「一步錯、全盤皆輸」的脆弱性。<em>Xu et al. (2024)</em> 引用實證數據揭示了一個令人震驚的現象：
+          </p>
+
+          <!-- 二十步斷崖圖表 (Reasoning Cliff Chart Image) -->
+          <figure class="my-6 rounded-2xl overflow-hidden card-frosted p-2 border border-white">
+            <img src="../slides/assets/reasoning-cliff-chart.svg" alt="二十步推理斷崖數據曲線" class="w-full h-auto rounded-xl object-contain max-h-[440px]" onerror="this.src='../slides/assets/reasoning-cliff-chart.png';" />
+            <figcaption class="text-center text-xs text-slate-400 py-2 tracking-wider font-light">
+              圖 4：推理步驟長度對模型解答正確率之非線性衰減曲線（引自 Paranjape et al., 2023）
+            </figcaption>
+          </figure>
+
+          <p>
+            如圖 4 所示，LLM 在 5 步以內的短程推導中能維持高達 <strong>95%</strong> 的優秀命中率；然而當證明題步數延伸至 <strong>20 步以上</strong>時，正確率呈斷崖式跌落至僅剩 <strong>36%</strong>。其根源在於：自回歸生成的單向性使得初期產生的微小數值或運算子誤差形成<strong>骨牌式連鎖反應（Cascading Failures）</strong>，徹底瓦解終端證明的可信度。
+          </p>
+        </div>
+      </section>
+
+      <!-- 模組二：學習者認知與心理惰性 -->
+      <section id="dimension-2" class="space-y-6 pt-6 border-t editorial-border">
+        <div class="space-y-2">
+          <span class="text-xs font-bold text-sky-500 uppercase tracking-widest">向度 02 • Learner Cognition</span>
+          <h2 class="text-xl md:text-2xl font-bold text-slate-800 serif-title">學習者認知衝擊與心理惰性</h2>
+        </div>
+
+        <div class="space-y-4 text-sm md:text-base leading-relaxed text-slate-600 font-light">
+          <p>
+            調研指出，全球有高達 <strong>89%</strong> 的學生在撰寫作業或論文時曾使用 ChatGPT 等生成式工具。然而，這種極致的便利性同時也是一把雙面刃，極易誘發嚴重的<strong>「認知外包（Cognitive Offloading）」</strong>。
+          </p>
+
+          <!-- 認知外包圖 (Cognitive Laziness Image) -->
+          <figure class="my-6 rounded-2xl overflow-hidden card-frosted p-2 border border-white">
+            <img src="../slides/assets/cognitive-laziness.svg" alt="主動探究迴路 vs 惰性消減圖" class="w-full h-auto rounded-xl object-contain max-h-[440px]" onerror="this.src='../slides/assets/cognitive-laziness.png';" />
+            <figcaption class="text-center text-xs text-slate-400 py-2 tracking-wider font-light">
+              圖 5：主動式探究閉環（深層認知建構）與被動式 AI 答案複製（思考退化）路徑對比
+            </figcaption>
+          </figure>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+            <div class="card-frosted p-4 rounded-xl space-y-2">
+              <h4 class="font-bold text-xs text-slate-800">● 思考挫折期的消失</h4>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                心理學研究表明，人類深度學習（Deep Learning）正是發生在「嘗試、卡住、思索、顿悟」的挫折調試期。AI 若直接給出答案，學生便跳過了突觸重塑的核心過程。
+              </p>
+            </div>
+            <div class="card-frosted p-4 rounded-xl space-y-2">
+              <h4 class="font-bold text-xs text-slate-800">● 假性理解的幻覺</h4>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                學生在閱讀 AI 詳盡解題步驟時會產生「自己已經完全學會」的認知錯覺（Illusion of Competence），一旦脫離輔助工具便無法獨立解構問題。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 模組三：教育本質的不可符號化 -->
+      <section id="dimension-3" class="space-y-6 pt-6 border-t editorial-border">
+        <div class="space-y-2">
+          <span class="text-xs font-bold text-indigo-500 uppercase tracking-widest">向度 03 • Pedagogical Philosophy</span>
+          <h2 class="text-xl md:text-2xl font-bold text-slate-800 serif-title">教育本質的不可符號化</h2>
+        </div>
+
+        <div class="space-y-4 text-sm md:text-base leading-relaxed text-slate-600 font-light">
+          <p>
+            教育的深層真諦在於「以靈魂喚醒靈魂」。然而，人類養育與機器學習的底層機制存在不可通約的根本差異：
+          </p>
+
+          <!-- 師生情感意象圖 (Teacher Student Nature Image) -->
+          <figure class="my-6 rounded-2xl overflow-hidden card-frosted p-2 border border-white">
+            <img src="../slides/assets/teacher-student-nature.svg" alt="師生情感共鳴意象圖" class="w-full h-auto rounded-xl object-contain max-h-[440px]" onerror="this.src='../slides/assets/teacher-student-nature.png';" />
+            <figcaption class="text-center text-xs text-slate-400 py-2 tracking-wider font-light">
+              圖 6：人類師生情感光暈共鳴波與非符號化身教傳遞
+            </figcaption>
+          </figure>
+
+          <div class="overflow-x-auto pt-2">
+            <table class="w-full text-xs text-left card-frosted rounded-2xl overflow-hidden">
+              <thead class="bg-slate-100/70 text-slate-700 font-semibold uppercase tracking-wider">
+                <tr>
+                  <th class="p-3.5">比較向度</th>
+                  <th class="p-3.5">人類教育歷程</th>
+                  <th class="p-3.5">機器教育 / LLM 學習機制</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr>
+                  <td class="p-3.5 font-bold text-slate-800">演進順序</td>
+                  <td class="p-3.5 text-slate-600">價值觀塑造 $\to$ 系統知識獲取 $\to$ 生活實踐體悟</td>
+                  <td class="p-3.5 text-slate-600">吞吐海量語料 $\to$ 統計規律關聯 $\to$ 人類回饋對齊 (RLHF)</td>
+                </tr>
+                <tr>
+                  <td class="p-3.5 font-bold text-slate-800">知識屬性</td>
+                  <td class="p-3.5 text-slate-600">高度依賴身教、眼神、挫敗共情等「隱性知識 (Tacit Knowledge)」</td>
+                  <td class="p-3.5 text-slate-600">純粹符號化文字矩陣運算，無真實痛感與情感意識</td>
+                </tr>
+                <tr>
+                  <td class="p-3.5 font-bold text-slate-800">教師角色定位</td>
+                  <td class="p-3.5 text-slate-600">不可替代的啟蒙者、人生導師（Mentor）</td>
+                  <td class="p-3.5 text-slate-600">超高吞吐量的資訊重組輔助工具、24/7 虛擬助理</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 模組四：數位鴻溝與誠信危機 -->
+      <section id="dimension-4" class="space-y-6 pt-6 border-t editorial-border">
+        <div class="space-y-2">
+          <span class="text-xs font-bold text-amber-500 uppercase tracking-widest">向度 04 • Ethics & Equity</span>
+          <h2 class="text-xl md:text-2xl font-bold text-slate-800 serif-title">數位鴻溝、資安隱私與誠信危機</h2>
+        </div>
+
+        <div class="space-y-4 text-sm md:text-base leading-relaxed text-slate-600 font-light">
+          <p>
+            技術發展並非自動帶來社會正義。隨著高階大模型日益朝向商業化訂閱發展，教育現場面臨著制度層面的新衝突：
+          </p>
+
+          <!-- 數位鴻溝天平圖 (Equity Privacy Divide Image) -->
+          <figure class="my-6 rounded-2xl overflow-hidden card-frosted p-2 border border-white">
+            <img src="../slides/assets/equity-privacy-divide.svg" alt="教育平權天平與隱私屏障" class="w-full h-auto rounded-xl object-contain max-h-[440px]" onerror="this.src='../slides/assets/equity-privacy-divide.png';" />
+            <figcaption class="text-center text-xs text-slate-400 py-2 tracking-wider font-light">
+              圖 7：算力門檻帶來的教育天平傾斜與未成年人隱私防護罩
+            </figcaption>
+          </figure>
+
+          <ul class="list-disc pl-5 space-y-2 text-xs md:text-sm text-slate-600">
+            <li><strong>AI 輔導的階級分化：</strong>優渥家庭能負擔頂規的模型 API 與硬體算力，弱勢偏鄉學子甚至缺乏穩定頻寬，加劇「二次數位鴻溝」。</li>
+            <li><strong>未成年人畫像隱私安全：</strong>自適應學習平台在長期記錄學生錯題、語音提問與心理傾訴時，若資料未經本地去識別化，極易引發個資外洩風險。</li>
+            <li><strong>評量制度的迫切重構：</strong>傳統「紙筆作業」與「課後報告」在 AI 代寫面前幾乎喪失信度，學校必須轉向「課堂即時探究、口試口辯、推導鏈即席重構」的新評量典範。</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 模組五：終極破局架構 -->
+      <section id="triad" class="space-y-6 pt-6 border-t editorial-border">
+        <div class="space-y-2">
+          <span class="text-xs font-bold text-emerald-500 uppercase tracking-widest">向度 05 • Breakthrough Architecture</span>
+          <h2 class="text-xl md:text-2xl font-bold text-slate-800 serif-title">終極破局：可靠智慧導師的技術三角</h2>
+        </div>
+
+        <div class="space-y-4 text-sm md:text-base leading-relaxed text-slate-600 font-light">
+          <p>
+            綜合文獻 <em>Wei (2022)</em>、<em>Lightman (2023)</em> 與 <em>Schick (2023)</em> 的理論演進，未來可靠教育大模型（Reliable ITS）的標準實踐必須是<strong>「思維鏈 (CoT) + 過程監督 (PRM) + 工具自主調用 (Toolformer)」</strong>的三角閉環：
+          </p>
+
+          <!-- 終極三角架構圖 (Future Triad Architecture Image) -->
+          <figure class="my-6 rounded-2xl overflow-hidden card-frosted p-2 border border-white">
+            <img src="../slides/assets/future-triad-architecture.svg" alt="終極可靠導師三角架構圖" class="w-full h-auto rounded-xl object-contain max-h-[460px]" onerror="this.src='../slides/assets/future-triad-architecture.png';" />
+            <figcaption class="text-center text-xs text-slate-400 py-2 tracking-wider font-light">
+              圖 8：CoT 啟發推導 + PRM 步驟級邏輯核驗 + Toolformer 確定性算術引擎之解耦架構
+            </figcaption>
+          </figure>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+            <div class="card-frosted p-4 rounded-xl space-y-1.5 border-t-2 border-t-rose-300">
+              <span class="text-[11px] font-bold text-rose-500">1. 思維透明化</span>
+              <h4 class="font-bold text-xs text-slate-800">Chain-of-Thought (CoT)</h4>
+              <p class="text-xs text-slate-500">
+                顯式展示 Intermediate Steps，讓學生觀摩解題思考路徑，而非只看最終數字。
+              </p>
+            </div>
+            <div class="card-frosted p-4 rounded-xl space-y-1.5 border-t-2 border-t-sky-300">
+              <span class="text-[11px] font-bold text-sky-500">2. 步驟級邏輯診斷</span>
+              <h4 class="font-bold text-xs text-slate-800">Process Supervision (PRM)</h4>
+              <p class="text-xs text-slate-500">
+                以 PRM800K 架構即時核驗每一步驟，精確定位學生「第幾步公式用錯」，根除歪打正著。
+              </p>
+            </div>
+            <div class="card-frosted p-4 rounded-xl space-y-1.5 border-t-2 border-t-indigo-300">
+              <span class="text-[11px] font-bold text-indigo-500">3. 符號運算解耦</span>
+              <h4 class="font-bold text-xs text-slate-800">Toolformer (Tool-Use)</h4>
+              <p class="text-xs text-slate-500">
+                將大數加減乘除與定理驗證交由外部計算器（Calculator / Lean 4），杜絕純神經網絡計算幻覺。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 附錄：引用文獻 -->
+      <section id="references" class="space-y-4 pt-6 border-t editorial-border text-xs text-slate-500 font-light">
+        <h3 class="text-sm font-bold text-slate-700 uppercase tracking-widest">附錄：核心引用學術文獻</h3>
+        <ol class="list-decimal pl-5 space-y-1.5 text-[11px] leading-relaxed">
+          <li><strong>Xu, H., Gan, W., Qi, Z., Wu, J., & Yu, P. S. (2024).</strong> Large Language Models for Education: A Survey. <em>arXiv preprint arXiv:2405.13001</em>.</li>
+          <li><strong>Wei, J., Wang, X., Schuurmans, D., et al. (2022).</strong> Chain-of-Thought Prompting Elicits Reasoning in Large Language Models. <em>NeurIPS 2022</em> (arXiv:2201.11903).</li>
+          <li><strong>Lightman, H., Kosaraju, V., Burda, Y., et al. (2023).</strong> Let's Verify Step by Step. <em>OpenAI Research</em> (arXiv:2305.20050).</li>
+          <li><strong>Schick, T., Dwivedi-Yu, J., Dessì, R., et al. (2023).</strong> Toolformer: Language Models Can Teach Themselves to Use Tools. <em>NeurIPS 2023</em> (arXiv:2302.04761).</li>
+          <li><strong>Paranjape, B., Lundberg, S., Singh, S., et al. (2023).</strong> ART: Automatic Multi-step Reasoning and Tool-use for Large Language Models. <em>arXiv preprint arXiv:2303.09014</em>.</li>
+        </ol>
+      </section>
+
+      <!-- 頁尾結語 -->
+      <footer class="pt-8 border-t editorial-border text-center text-xs text-slate-400 font-light space-y-2">
+        <p>Research LLM Wiki • 知識庫持續累積出版品</p>
+        <p class="text-[11px]">本講義採用純原生 Web 技術構建，支援免連線單檔瀏覽與無損列印。</p>
+      </footer>
+
+    </main>
+  </div>
+
+</body>
+</html>

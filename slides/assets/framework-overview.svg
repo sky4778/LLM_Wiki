@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="100%" height="100%">
+  <defs>
+    <filter id="mShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0F172A" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+  <rect width="960" height="540" rx="24" fill="#FAF9F6" stroke="#E2E8F0" stroke-width="2"/>
+
+  <!-- Title -->
+  <text x="480" y="55" font-family="'Noto Serif TC', serif" font-size="24" font-weight="700" fill="#1E293B" text-anchor="middle">LLM 在教學上的運用問題：四大向度全景圖</text>
+  <text x="480" y="85" font-family="'Zen Kaku Gothic New', sans-serif" font-size="14" fill="#64748B" text-anchor="middle">Research LLM Wiki • 系統性知識拓撲網絡</text>
+
+  <!-- 4 Big Distinct Quadrant Pods -->
+  <g transform="translate(60, 115)">
+    <!-- Pod 1: Tech -->
+    <rect x="0" y="0" width="400" height="175" rx="18" fill="#FFF1F2" stroke="#FDA4AF" stroke-width="2" filter="url(#mShadow)"/>
+    <rect x="25" y="22" width="110" height="26" rx="13" fill="#E11D48"/>
+    <text x="80" y="39" font-family="'Zen Kaku Gothic New', sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">向度 01 • 技術底層</text>
+    <text x="25" y="75" font-family="'Zen Kaku Gothic New', sans-serif" font-size="17" font-weight="700" fill="#9F1239">技術性能與邏輯極限</text>
+    <text x="25" y="105" font-family="'Zen Kaku Gothic New', sans-serif" font-size="12" fill="#475569">• 機器幻覺與偽事實固化</text>
+    <text x="25" y="128" font-family="'Zen Kaku Gothic New', sans-serif" font-size="12" fill="#475569">• 二十步推理斷崖 (95% 驟降至 36%)</text>
+    <text x="25" y="151" font-family="'Zen Kaku Gothic New', sans-serif" font-size="12" fill="#475569">• 語料偏差與本土知識匱乏</text>
+
+    <!-- Pod 2: Cognition -->
+    <rect x="440" y="0" width="400" height="175" rx="18" fill="#FFFBEB" stroke="#FDE68A" stroke-width="2" filter="url(#mShadow)"/>
+    <rect x="465" y="22" width="110" height="26" rx="13" fill="#D97706"/>
+    <text x="520" y="39" font-family="'Zen Kaku Gothic New', sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">向度 02 • 學習心理</text>
+    <text x="465" y="75" font-family="'Zen Kaku Gothic New', sans-serif" font-size="17" font-weight="700" fill="#92400E">學習者認知與思維惰性</text>
+    <text x="465" y="105" font-family="'Zen Kaku Gothic New', sans-serif" font-size="12" fill="#475569">• 認知外包 (Cognitive Offloading)</text>
+    <text x="465" y="128" font-family="'Zen Kaku Gothic New', sans-serif" font-size="12" fill="#475569">• 假性理解 (看懂不等於掌握獨立解題)</text>
+    <text x="465" y="151" font-family="'Zen Kaku Gothic New', sans-serif" font-size="12" fill="#475569">• 破局：蘇格拉底防爆雷 Prompting</text>
+
+    <!-- Pod 3: Pedagogy -->
+    <rect x="0" y="200" width="400" height="175" rx="18" fill="#F0F9FF" stroke="#BAE6FD" stroke-width="2" filter="url(#mShadow)"/>
+    <rect x="25" y="222" width="110" height="26" rx="13" fill="#0284C7"/>
+    <text x="80" y="239" font-family="'Zen Kaku Gothic New', sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">向度 03 • 教育哲學</text>
+    <text x="25" y="275" font-family="'Zen Kaku Gothic New', sans-serif" font-size="17" font-weight="700" fill="#0369A1">教育本質的不可符號化</text>
+    <text x="25" y="305" font-family="'Zen Kaku Gothic New', sans-serif" font-size="12" fill="#475569">• 人類培育 vs 機器學習順序不可通約</text>
+    <text x="25" y="328" font-family="'Zen Kaku Gothic New', sans-serif" font-size="12" fill="#475569">• 眼神肯定、挫敗共情難以被向量化</text>
+    <text x="25" y="351" font-family="'Zen Kaku Gothic New', sans-serif" font-size="12" fill="#475569">• 教師角色升級為靈魂 Mentor</text>
+
+    <!-- Pod 4: Governance -->
+    <rect x="440" y="200" width="400" height="175" rx="18" fill="#F0FDF4" stroke="#A7F3D0" stroke-width="2" filter="url(#mShadow)"/>
+    <rect x="465" y="222" width="110" height="26" rx="13" fill="#059669"/>
+    <text x="520" y="239" font-family="'Zen Kaku Gothic New', sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">向度 04 • 體制治理</text>
+    <text x="465" y="275" font-family="'Zen Kaku Gothic New', sans-serif" font-size="17" font-weight="700" fill="#065F46">數位鴻溝與誠信危機</text>
+    <text x="465" y="305" font-family="'Zen Kaku Gothic New', sans-serif" font-size="12" fill="#475569">• 付費模型門檻造成「二次階層分化」</text>
+    <text x="465" y="328" font-family="'Zen Kaku Gothic New', sans-serif" font-size="12" fill="#475569">• 未成年人學習軌跡隱私紅線</text>
+    <text x="465" y="351" font-family="'Zen Kaku Gothic New', sans-serif" font-size="12" fill="#475569">• 評量由作業成果轉向課堂即席探究</text>
+  </g>
+</svg>

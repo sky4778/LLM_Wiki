@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <filter id="fShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#0F172A" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+  <rect width="800" height="600" rx="24" fill="#FAFAFB" stroke="#E2E8F0" stroke-width="2"/>
+
+  <!-- Left: Grounded Knowledge (Blue) -->
+  <g transform="translate(50, 50)">
+    <rect width="330" height="500" rx="20" fill="#F0F9FF" stroke="#BAE6FD" stroke-width="2" filter="url(#fShadow)"/>
+    <rect x="25" y="25" width="280" height="40" rx="10" fill="#0284C7"/>
+    <text x="165" y="50" font-family="'Zen Kaku Gothic New', sans-serif" font-size="16" font-weight="700" fill="#FFFFFF" text-anchor="middle">✔ 校本教材錨定 (RAG)</text>
+
+    <!-- Structured Anchors -->
+    <rect x="25" y="90" width="280" height="70" rx="12" fill="#FFFFFF" stroke="#E0F2FE" stroke-width="1.5"/>
+    <text x="45" y="120" font-family="'Zen Kaku Gothic New', sans-serif" font-size="14" font-weight="700" fill="#0369A1">標準教科書定義</text>
+    <text x="45" y="142" font-family="'Zen Kaku Gothic New', sans-serif" font-size="12" fill="#64748B">經過專家審訂、可溯源查證</text>
+
+    <rect x="25" y="180" width="280" height="70" rx="12" fill="#FFFFFF" stroke="#E0F2FE" stroke-width="1.5"/>
+    <text x="45" y="210" font-family="'Zen Kaku Gothic New', sans-serif" font-size="14" font-weight="700" fill="#0369A1">可驗證之事實數據</text>
+    <text x="45" y="232" font-family="'Zen Kaku Gothic New', sans-serif" font-size="12" fill="#64748B">排除統計預測中的虛構妄語</text>
+
+    <rect x="25" y="270" width="280" height="70" rx="12" fill="#FFFFFF" stroke="#E0F2FE" stroke-width="1.5"/>
+    <text x="45" y="300" font-family="'Zen Kaku Gothic New', sans-serif" font-size="14" font-weight="700" fill="#0369A1">本土歷史與語言對齊</text>
+    <text x="45" y="322" font-family="'Zen Kaku Gothic New', sans-serif" font-size="12" fill="#64748B">降低英文語料優勢帶來的文化偏差</text>
+
+    <!-- Bottom summary -->
+    <text x="165" y="450" font-family="'Zen Kaku Gothic New', sans-serif" font-size="14" font-weight="600" fill="#0284C7" text-anchor="middle">可靠認知基石</text>
+  </g>
+
+  <!-- Right: Stochastic Hallucination (Rose) -->
+  <g transform="translate(420, 50)">
+    <rect width="330" height="500" rx="20" fill="#FFF1F2" stroke="#FECDD3" stroke-width="2" filter="url(#fShadow)"/>
+    <rect x="25" y="25" width="280" height="40" rx="10" fill="#E11D48"/>
+    <text x="165" y="50" font-family="'Zen Kaku Gothic New', sans-serif" font-size="16" font-weight="700" fill="#FFFFFF" text-anchor="middle">✖ 無約束機器幻覺</text>
+
+    <!-- Drifting errors -->
+    <rect x="25" y="90" width="280" height="70" rx="12" fill="#FFFFFF" stroke="#FFE4E6" stroke-width="1.5"/>
+    <text x="45" y="120" font-family="'Zen Kaku Gothic New', sans-serif" font-size="14" font-weight="700" fill="#BE123C">「一本正經胡說八道」</text>
+    <text x="45" y="142" font-family="'Zen Kaku Gothic New', sans-serif" font-size="12" fill="#881337">流暢自信，但全然捏造偽知識</text>
+
+    <rect x="25" y="180" width="280" height="70" rx="12" fill="#FFFFFF" stroke="#FFE4E6" stroke-width="1.5"/>
+    <text x="45" y="210" font-family="'Zen Kaku Gothic New', sans-serif" font-size="14" font-weight="700" fill="#BE123C">認知弱勢學生誤導</text>
+    <text x="45" y="232" font-family="'Zen Kaku Gothic New', sans-serif" font-size="12" fill="#881337">缺乏分辨力，誤將偽事實奉為圭臬</text>
+
+    <rect x="25" y="270" width="280" height="70" rx="12" fill="#FFFFFF" stroke="#FFE4E6" stroke-width="1.5"/>
+    <text x="45" y="300" font-family="'Zen Kaku Gothic New', sans-serif" font-size="14" font-weight="700" fill="#BE123C">心智模型早期固化</text>
+    <text x="45" y="322" font-family="'Zen Kaku Gothic New', sans-serif" font-size="12" fill="#881337">錯誤概念深植，後續修正代價昂貴</text>
+
+    <!-- Bottom summary -->
+    <text x="165" y="450" font-family="'Zen Kaku Gothic New', sans-serif" font-size="14" font-weight="600" fill="#E11D48" text-anchor="middle">高風險認知污染源</text>
+  </g>
+</svg>
